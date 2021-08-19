@@ -1,27 +1,21 @@
+#https://twinw.tistory.com/126
 import sys
 input = sys.stdin.readline
 
-n= input().rstrip()
-key= input().rstrip()
-l=len(n)
-l2= len(key)
+n1= "0"+input().rstrip()
+n2= "0"+input().rstrip()
+l1=len(n1)
+l2= len(n2)
 
-dp=[[0,0] for _ in range(l)] #[length,index in key]
+dp=[ 0 for _ in range(l1)]
+dp2=[ 0 for _ in range(l1)]
 
-for i in range(l):
+for i in range(1,l2):
+    for j in range(1,l1):
+        if n2[i]==n1[j]:
+            dp[j]= dp2[j-1]+1
+        else:
+            dp[j]= max([dp[j-1],dp2[j]])
+    dp2=dp[:]
 
-    idxList=[]
-    #for the past
-    for j in range(i):
-        #longer
-        if dp[i][0]>dp[j][0]+1:
-            idx=-1
-             #hasPlace
-            for k in range(dp[j][1],l2):
-                if n[i]==key[k]:
-                    idx=k
-                    break
-            if idx==-1: continue
-            dp[i][0]=dp[j][0]+1
-            dp[i][1]=idx
-       
+print(max(dp))
