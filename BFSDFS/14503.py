@@ -18,8 +18,7 @@ def printGraph():
     for row in graph:
         print(row)
     print("\n")
-print(r,c,d)
-printGraph()
+
 while True:
     haveToClean=0
     for _ in range(4):
@@ -33,9 +32,6 @@ while True:
             break
         d=nextDir[d]
 
-    if answer<12:
-        print(answer, r,c,d)
-        printGraph()
 
     if haveToClean==1:
         continue
