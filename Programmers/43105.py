@@ -4,7 +4,7 @@ def solution(triangle):
     prev_line=[triangle[0][0]]
     
     for i in range(1,len(triangle)):
-        
+
         
         tmp = [0]*(i+1)
         
@@ -14,5 +14,5 @@ def solution(triangle):
         #print(tmp)
         prev_line=tmp
         
-    
+
     return max(prev_line)
