@@ -7,3 +7,9 @@ class Solution:
             if num=='1':
                 answer+=1
         return answer
+
+    def solution(self, x: int, y: int) -> int:
+        return bin(x^y).count('1')
+
+#bin return type is string.
+#^ is xor
