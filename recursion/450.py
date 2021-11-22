@@ -1,4 +1,5 @@
 #Delete Tree
+#211122 solved 60min
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -66,7 +67,4 @@ class Solution:
             rPar.left=rTrav.right
             rTrav.right=trav.right
             
-                
-                
-        
         return root
