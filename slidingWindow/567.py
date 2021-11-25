@@ -79,3 +79,42 @@ class Solution(object):
             if window == target:
                 return True
         return False
+
+
+    def BestcheckInclusion(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        if len(s1) > len(s2):
+            return False
+        s1Chars = {char: 0  for char in s1}
+        s2Chars = {char: 0 for char in s1}
+        
+        left = 0
+        right = len(s1) -1 
+        
+        for i in s1:
+            s1Chars[i] += 1
+            
+        for i in range(0, len(s1)):
+            char = s2[i]
+            if char in s2Chars:
+                s2Chars[char] += 1
+        
+        while right < len(s2) - 1:
+            if s1Chars == s2Chars:
+                return True
+            
+            l = s2[left]
+            if l in s2Chars:
+                s2Chars[l] -= 1
+            left += 1
+            
+            right += 1
+            r = s2[right]
+            if r in s2Chars:
+                s2Chars[r] += 1
+            
+        return s1Chars == s2Chars
