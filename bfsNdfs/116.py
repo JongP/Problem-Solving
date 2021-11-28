@@ -76,3 +76,15 @@ class Solution:
                     trav.left.next = trav.right
                     trav.right.next = trav.next.left
                     trav = trav.next
+    def connect(self, root):
+        dic = {}#using dict not ary, u don't need to know height
+        def dfs(r, dep):
+            if not r:
+                return
+            if dep in dic:#left first, unlike my solution
+                dic[dep].next = r
+            r.next = None
+            dic[dep] = r
+            dfs(r.left, dep + 1)
+            dfs(r.right, dep + 1)
+        dfs(root, 0)
