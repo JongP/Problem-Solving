@@ -71,3 +71,5 @@ class Solution:
                         return times_of_jump
                 
         return times_of_jump
+
+#https://www.youtube.com/watch?v=dJ7sWiOoK7g
