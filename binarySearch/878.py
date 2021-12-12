@@ -28,5 +28,7 @@ How many magic numbers <= x ?
 By inclusion exclusion principle, we have:
 x / A + x / B - x / lcm
 """
-
+#solved with hint
 #https://leetcode.com/problems/nth-magical-number/discuss/154613/C%2B%2BJavaPython-Binary-Search
+#nth number <--> there are n magical number smaller than x
+#don't forget to apply MODULO!!
