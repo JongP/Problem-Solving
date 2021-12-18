@@ -41,7 +41,8 @@ class Solution:
 
 #logic is same but, much simple codes
 #https://leetcode.com/problems/numbers-at-most-n-given-digit-set/discuss/168279/Python-O(logN)
-#think why log(n)
+#think why log(N)? log(N) with base = 10. which means number of digit of N
+#D makes constant time
     def atMostNGivenDigitSet(self, D, N):
         N = str(N)
         n = len(N)
