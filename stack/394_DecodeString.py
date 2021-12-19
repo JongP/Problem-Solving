@@ -2,6 +2,33 @@ class Solution:
 
     #stk solution  17% 93%
     #first mistake w/o setting tmpD which implies that digits can more than 1-digit number
+    
+    #clean solution
+    def search(self, nums: List[int], target: int) -> int:
+        l=len(nums)
+        t=target
+        
+        if l==1:
+            return 0 if nums[0]==target else -1
+        
+        le=0
+        ri=l-1
+        
+        while le<=ri:
+            mid=(le+ri)//2
+            if t<nums[mid] and t<nums[le] and nums[mid]>=nums[le]:
+                le=mid+1
+            elif t>nums[mid] and t>nums[ri] and nums[mid]<nums[ri] :
+                ri=mid-1
+            elif t<nums[mid]:
+                ri=mid-1
+            elif t>nums[mid]:
+                le=mid+1
+            else:
+                return mid
+            
+            
+        return -1
     def decodeString(self, s: str) -> str:
         s="1["+s+"]"#we dont need this actually
         stk=[]
