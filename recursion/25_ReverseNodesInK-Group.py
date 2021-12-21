@@ -69,18 +69,16 @@ class Solution:
 #https://leetcode.com/problems/reverse-nodes-in-k-group/discuss/11653/Python-recursive-and-iterative-solutions-with-comments.
 # Recursively
 def reverseKGroup(self, head, k):
-    l, node = 0, head
-    while node:
-        l += 1
-        node = node.next
-    if k <= 1 or l < k:
+    if k <= 1 :
         return head
     node, cur = None, head
+    #this is quite well-known!
     for _ in xrange(k):
         nxt = cur.next
         cur.next = node
         node = cur
         cur = nxt
+    #have to keep in mind this above    
     head.next = self.reverseKGroup(cur, k)
     return node
 
@@ -88,15 +86,10 @@ def reverseKGroup(self, head, k):
 def reverseKGroup(self, head, k):
     if not head or not head.next or k <= 1:
         return head
-    cur, l = head, 0
-    while cur:
-        l += 1
-        cur = cur.next
-    if k > l:
-        return head
+
     dummy = pre = ListNode(0)
     dummy.next = head
-    # totally l//k groups
+    # totally l//k groups, l is number of nodes
     for i in xrange(l//k):
         # reverse each group
         node = None
