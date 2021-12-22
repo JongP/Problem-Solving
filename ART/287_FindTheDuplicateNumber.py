@@ -65,3 +65,11 @@ class Solution:
             if a > b:
                 ans |= mask
         return ans
+
+#floyd tortoise and hare in Korean
+#https://fierycoding.tistory.com/45
+
+
+#bit operation
+#https://leetcode.com/problems/find-the-duplicate-number/discuss/72872/O(32*N)-solution-using-bit-manipulation-in-10-lines
+#We can count the sum of each 32 bits separately for the given array (stored in "b" variable) and for the array [1, 2, 3, ..., n] (stored in "a" variable). If "b" is greater than "a", it means that duplicated number has 1 at the current bit position (otherwise, "b" couldn't be greater than "a"). This way we retrieve the answer bit by bit:
