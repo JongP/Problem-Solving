@@ -1,4 +1,5 @@
 #from collections import defaultdict
+#first slow version
 class Solution:
     
     def makeTrie(self,words):
@@ -135,6 +136,39 @@ class Solution:
         
         
         
+#popular solution
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         
+        def backtrack(r: int, c: int, parent: dict) -> None: #it named parameter as parent not trav!
+            letter = board[r][c]
+            root = parent[letter]
+            board[r][c] = "*"
+            matched = root.pop("#", False)
+            if matched:
+                result.append(matched)
+                
+            for x, y in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                if (0 <= r + x < m and 0 <= c + y < n and board[r+x][c+y] in root):
+                    backtrack(r+x, c+y, root)
+            board[r][c] = letter
+            if not root:
+                parent.pop(letter)
+    
+        trie = {}
+        for word in words:
+            curr = trie
+            for char in word:
+                curr = curr.setdefault(char, {})
+            curr["#"] = word
+                
         
+        m, n = len(board), len(board[0])
+
+        result = []
+        for r in range(m):
+            for c in range(n):
+                if board[r][c] in trie:
+                    backtrack(r, c, trie)
+        return result
         
