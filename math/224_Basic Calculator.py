@@ -61,3 +61,39 @@ def calculate(self, s):
             num = 0
             stack.pop()
     return res
+
+#https://leetcode.com/problems/basic-calculator/discuss/62344/Easy-18-lines-C%2B%2B-16-lines-Python
+def calculate(self, s):
+    total = 0
+    i, signs = 0, [1, 1]
+    while i < len(s):#we don't need to use for loop cuz of the consecutive digits.
+        c = s[i]
+        if c.isdigit():
+            start = i
+            while i < len(s) and s[i].isdigit():
+                i += 1
+            total += signs.pop() * int(s[start:i])
+            continue
+        if c in '+-(':
+            signs += signs[-1] * (1, -1)[c == '-'], #nice code
+        elif c == ')':
+            signs.pop()
+        i += 1
+    return total
+
+
+"""
+  remaining   sign stack      total
+3-(2+(9-4))   [1, 1]            0
+ -(2+(9-4))   [1]               3
+  (2+(9-4))   [1, -1]           3
+   2+(9-4))   [1, -1, -1]       3
+    +(9-4))   [1, -1]           1
+     (9-4))   [1, -1, -1]       1
+      9-4))   [1, -1, -1, -1]   1
+       -4))   [1, -1, -1]      -8
+        4))   [1, -1, -1, 1]   -8
+         ))   [1, -1, -1]      -4
+          )   [1, -1]          -4
+              [1]              -4
+"""
