@@ -6,7 +6,6 @@ class Solution:
         cur=0
         s+="+"
         
-        esc=False
         for c in s:
             if c.isspace():
                 continue
@@ -42,13 +41,14 @@ class Solution:
             
                 
         return cur
-
+#we only need the sign effect on final result,
+#better than below one
 #https://leetcode.com/problems/basic-calculator/discuss/62418/Python-with-stack
 def calculate(self, s):
     res, num, sign, stack = 0, 0, 1, [1]
     for i in s+"+":
         if i.isdigit():
-            num = 10*num + int(i)
+            num = 10*num + int(i)#we have num in int
         elif i in "+-":
             res += num * sign * stack[-1]
             sign = 1 if i=="+" else -1
