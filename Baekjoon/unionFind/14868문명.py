@@ -75,3 +75,5 @@ while que:
 
 
 print(cnt)
+
+#https://www.acmicpc.net/source/35023194
