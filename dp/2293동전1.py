@@ -9,7 +9,7 @@ input=lambda: sys.stdin.readline().rstrip()
 
 n,k=map(int,input().split())
 coins=[int(input()) for _ in range(n)]
-prev=dp=[0 for _ in range(k+1)]
+
 cur=[0 for _ in range(k+1)]
 cur[0]=1
 
