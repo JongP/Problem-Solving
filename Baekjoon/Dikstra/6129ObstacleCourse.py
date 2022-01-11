@@ -15,29 +15,37 @@ for i in range(n):
             end=(i,j)
     graph.append(line)
 
-visited=[[-2]*n for _ in range(n)]
-visited[start[0]][start[1]]=0
+visited=[[False]*n for _ in range(n)]
+dists=[[int(2e9)]*n for _ in range(n)]
+dists[start[0]][start[1]]=0
+path=[[set() for _ in range(n)] for _ in range(n)]
+for i in range(4):
+    path[start[0]][start[1]].add(i)
 dxdy=[(-1,0),(0,1),(1,0),(0,-1)]#n,e,s,w
-que=deque((start[0],start[1],-1))
+heap=[]
+heapq.heappush(heap,(0,start[0],start[1]))
 
 
-while que:
-    cx,cy,cd=que.popleft()
-
+while heap:
+    cd,cx,cy=heapq.heappop(heap)
+    if dists[cx][cy]<cd:
+        continue
 
     for i in range(4):
-        tx,ty=cx,cy
-        while True: 
-            nx,ny=tx+dxdy[i][0],ty+dxdy[i][1]
-            if nx<0 or nx>=n or ny<0 or ny>=n  or graph[nx][ny]=="x" or visited[nx][ny]!=-2:
-                break
-            
+        nx,ny=cx+dxdy[i][0],cy+dxdy[i][1]
+        if nx<0 or nx>=n or ny<0 or ny>=n  or graph[nx][ny]=="x":
+            continue
+        
 
-            que.append((nx,ny,i))
-            visited[nx][ny]=visited[cx][cy]+1
-            if i!=cd:
-                visited[nx][ny]+=1
-            if (nx,ny)==end:
-                print(visited[nx][ny])
-                exit()
-            tx,ty=nx,ny
+        newCost=cd + (0 if i in path[cx][cy] else 1)
+
+        if newCost<dists[nx][ny]:
+            dists[nx][ny]=newCost
+            path[nx][ny].clear()
+            path[nx][ny].add(i)
+            heapq.heappush(heap,(newCost,nx,ny))
+        elif newCost==dists[nx][ny]:
+            path[nx][ny].add(i)
+
+
+print((dists[end[0]][end[1]] if dists[end[0]][end[1]]!=int(2e9) else -1 ))
