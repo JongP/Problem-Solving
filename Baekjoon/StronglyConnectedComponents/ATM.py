@@ -2,7 +2,7 @@
 import sys
 input=lambda : sys.stdin.readline().rstrip()
 
-sys.setrecursionlimit(500000)
+sys.setrecursionlimit(1000000)
 
 N,M=map(int,input().split())
 graph=[[] for _ in range(N)]
@@ -11,6 +11,7 @@ graph=[[] for _ in range(N)]
 for _ in range(M):
     a,b=map(lambda x: int(x)-1,input().split())
     graph[a].append(b)
+
 
 moneys=[int(input()) for _ in range(N)]
 
@@ -86,7 +87,8 @@ for i in range(sn+1):
     if inDegrees[i]==0:
         stk.append(i)
 
-resL=sccSums[:]
+resL=[0]*(sn+1)
+resL[sccS]=sccSums[sccS]
 
 while stk:
     cur=stk.pop()
@@ -105,5 +107,3 @@ for r in sccRes:
     res=max(res,resL[r])
 
 print(res)
-
-
