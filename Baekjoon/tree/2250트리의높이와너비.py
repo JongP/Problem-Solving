@@ -43,6 +43,7 @@ for _ in range(n):
 for i in range(n):
     if not isChild[i]:
         root=i
+        break
 
 
 #----------------build dp-----------------#
