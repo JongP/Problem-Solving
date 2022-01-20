@@ -20,22 +20,16 @@ class Solution:
         return None
 
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
+#O(n) O(1)
+#https://fierycoding.tistory.com/45
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head:return None
         turtoise=head.next#I miss-wrote head not head.next
         hares=head.next.next if head.next else None
+        #hares should move as double as long turroise moves!!!!!
         
         while hares and turtoise!=hares:
-            
-            
-            
             turtoise=turtoise.next
             hares=hares.next.next if hares.next else None
         
