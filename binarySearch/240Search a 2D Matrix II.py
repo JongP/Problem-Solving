@@ -1,5 +1,5 @@
 #https://www.youtube.com/watch?v=FOa55B9Ikfg
-#searching == how to redcue search space?
+#searching == how to redcue search space? 
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         r,c=len(matrix),len(matrix[0])
