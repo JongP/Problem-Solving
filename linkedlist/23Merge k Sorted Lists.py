@@ -65,3 +65,32 @@ class Solution:
         
         
         return dummy.next
+
+#new tiral
+from heapq import heappop, heappush
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        heap=[]
+        res=resTrav=ListNode()
+        #init
+        for i in range(len(lists)):
+            trav=lists[i]
+            if not trav:continue
+            heappush(heap,(trav.val,i))
+            
+        
+        #sort
+        while heap:
+            val,i=heappop(heap)
+            resTrav.next=lists[i];resTrav=resTrav.next
+            lists[i]=lists[i].next
+            if lists[i]:
+                heappush(heap,(lists[i].val,i))
+        
+        
+        return res.next
