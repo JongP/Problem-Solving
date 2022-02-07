@@ -48,3 +48,20 @@ class Solution:
         return dp[0]
 
 #https://leetcode.com/problems/maximum-profit-in-job-scheduling/solution/
+#java
+#FFFFTTTTT 판별하기  --> targetIndex 따로두기
+#woooooooooooooow
+    private int findNextJob(int[] startTime, int lastEndingTime) {
+        int start = 0, end = startTime.length - 1, nextIndex = startTime.length;
+        
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if (startTime[mid] >= lastEndingTime) {
+                nextIndex = mid;
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return nextIndex;
+    }
