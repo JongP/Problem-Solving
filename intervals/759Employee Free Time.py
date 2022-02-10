@@ -98,6 +98,7 @@ class Solution:
         return free
 
 #nlogk
+#merge k sorted interval
 #https://leetcode.com/problems/employee-free-time/discuss/392763/easy-peasy-python-O(Nlog(K))-solution-where-K-is-of-employees
 def employeeFreeTime(self, schedule: 'list<list<Interval>>') -> 'list<Interval>':
     result = []
