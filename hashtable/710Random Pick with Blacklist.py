@@ -48,41 +48,27 @@ class Solution {
     }
     
     #BINARY SEARCH
-    #https://leetcode.com/problems/random-pick-with-blacklist/discuss/144441/Java-Binary-Search-Solution-O(BlogB)-for-constructor-and-O(logB)-for-pick()
-    private List<Interval> intervals;
-    private Random r;
-    private int l;
+    #https://leetcode.com/problems/random-pick-with-blacklist/discuss/1665322/Python-Binary-Search
+class BinarySearchSolution:
 
-    public Solution(int N, int[] blacklist) {
-        Arrays.sort(blacklist);
-        intervals = new ArrayList<>();
-        r = new Random();
-        l = N - blacklist.length;
-        int pre = 0, count = 0;
-        for (int b : blacklist) {
-            if (pre != b) {
-                intervals.add(new Interval(pre, b - 1, count));
-                count += b - pre;
-            }
-            pre = b + 1;
-        }
-        intervals.add(new Interval(pre, N - 1, count));
-    }
-    
-    public int pick() {
-        int index = r.nextInt(l);
-        int low = 0, high = intervals.size() - 1;
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            Interval cur = intervals.get(mid);
-            if (cur.preCount <= index && index < cur.preCount + cur.high - cur.low + 1) {
-                return cur.low + index - cur.preCount;
-            } else if (cur.preCount > index) {
-                high = mid - 1;
-            } else {
-                low = mid + 1;
-            }
-        }
-        return -1;
-    }
-}
+    def __init__(self, n: int, blacklist: List[int]):
+        self.n = n
+        self.k = n - len(blacklist)
+        self.blacklist = blacklist
+        self.blacklist.sort()
+
+    def pick(self) -> int:
+        p = random.randint(0, self.k - 1)
+        left, right = -1, len(self.blacklist) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            x = self.blacklist[mid + 1] if mid + 1 < len(self.blacklist) else math.inf
+            if x > p + mid + 1:
+                right = mid - 1
+            else:
+                left = mid + 1
+        if left == -1:
+            return p
+        elif left == len(self.blacklist):
+            return p + len(self.blacklist)
+        else: return p + left + 1
