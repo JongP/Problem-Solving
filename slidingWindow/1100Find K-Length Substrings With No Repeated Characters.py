@@ -33,23 +33,3 @@ class Solution:
             cur.add(S[j])
             res += j - i + 1 >= K
         return res
-
-#https://leetcode.com/problems/find-k-length-substrings-with-no-repeated-characters/discuss/471080/Python-Sliding-Window-Technique-(With-Explanation)!!
-class Solution:
-    def numKLenSubstrNoRepeats(self, s: str, K: int) -> int:
-        if len(s) < K:
-            return 0
-        
-        self.points = 0
-        currString = s[:K]
-        self.checkDup(currString)
-        
-        for i in range(len(s) - K):
-            currString = s[i+1:i+K+1]
-            self.checkDup(currString)
-        
-        return self.points 
-    
-    def checkDup(self, currString):
-        if len(currString) == len(set(currString)):
-            self.points += 1
