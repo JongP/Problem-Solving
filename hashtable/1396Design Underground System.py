@@ -2,7 +2,7 @@ from collections import defaultdict
 class UndergroundSystem:
 
     def __init__(self):
-        #hashMap={Leyton: {Paradise: {startSum,endSum}}}
+        #hashMap={Leyton: {Paradise: [startSum,endSum]}}
         self.hashMap=defaultdict(dict)
         self.people={}
         
