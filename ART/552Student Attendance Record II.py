@@ -120,3 +120,6 @@ class Solution(object):
             result += nums[i+1] * nums[n-i] % 1000000007
             result %= 1000000007
         return result
+
+#another important solution
+#https://leetcode.com/problems/student-attendance-record-ii/discuss/101643/Share-my-O(n)-C%2B%2B-DP-solution-with-thinking-process-and-explanation
