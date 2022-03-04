@@ -20,6 +20,7 @@ class Solution:
 #leetcode solution
 #https://leetcode.com/problems/distinct-subsequences/solution/
 #memoizatino
+#return the number of distinct subsequences in the substring s[i⋯M] that equal the substring t[j⋯N]
 class Solution:
     def numDistinct(self, s: str, t: str) -> int:
         
