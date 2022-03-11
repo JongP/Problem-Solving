@@ -33,6 +33,41 @@ class Solution:
                 
             
         return res
+        
+class Solution:
+    def maxSubarraySumCircular(self, nums: List[int]) -> int:
+        l=len(nums)
+        prev=nums[0]
+        res=nums[0]
+        
+        prefixSofar=nums[0]
+        surfixSofar=nums[-1]
+        prefixSum=[0]*l;prefixSum[0]=nums[0]
+        surfixSum=[0]*l;surfixSum[-1]=nums[-1]
+        
+        for i in range(1,len(nums)):
+            j=l-1-i
+            
+            #kadane
+            prev=max(prev+nums[i],nums[i])
+            if prev>res:res=prev
+            
+            #prefixSum
+            prefixSofar+=nums[i]
+            prefixSum[i]=max(prefixSum[i-1],prefixSofar)
+            
+            #surfixSum
+            surfixSofar+=nums[j]
+            surfixSum[j]=max(surfixSum[j+1],surfixSofar)
+
+            
+        
+        for i in range(len(nums)-1):
+            res=max(res,prefixSum[i]+surfixSum[i+1])
+                
+            
+        return res
+        
 
 #min subarray
 #https://leetcode.com/problems/maximum-sum-circular-subarray/discuss/178422/One-Pass
