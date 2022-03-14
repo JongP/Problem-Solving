@@ -78,3 +78,24 @@ def minWindow(self, S, T):
         s = start+1                     # Start next subsequence search
 
     return min_window
+
+class Solution:
+    def minWindow(self, searchInThis, target):  
+        sLen, tLen=len(searchInThis), len(target)
+        dp = [[20001]*(sLen+1) for _ in range(tLen+1)]
+        for tIdx in range(1, tLen+1):
+            for sIdx in range(1, sLen+1):
+                if searchInThis[sIdx-1]==target[tIdx-1]:
+                    if tIdx==1:
+                        dp[tIdx][sIdx]=1
+                    else:
+                        dp[tIdx][sIdx]=1+dp[tIdx-1][sIdx-1]
+                else:
+                    dp[tIdx][sIdx]=1+dp[tIdx][sIdx-1]
+        res=min(dp[-1])
+        if res == 20001:
+            return ''
+        for sIdx in range(1, sLen+1):
+            if dp[-1][sIdx]==res:
+                return searchInThis[sIdx-res:sIdx]
+                    
