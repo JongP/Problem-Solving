@@ -48,7 +48,7 @@ class Solution:
             SList, ans = SortedList([0]), -float("inf")
             for s in accumulate(nums):
                 idx = SList.bisect_left(s - U) 
-                if idx < len(SList): ans = max(ans, s - SList[idx])        
+                if idx < len(SList): ans = max(ans, s - SList[idx])
                 SList.add(s)
             return ans
         
