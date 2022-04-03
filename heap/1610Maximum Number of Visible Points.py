@@ -15,7 +15,6 @@ class Solution:
         heap=[]
         for deg in sorted(tilts.keys()):
             #heap clearance
-            #print(deg)
             while heap and (deg-heap[0])>angle :
                 cnt-=tilts[heappop(heap)]
             
@@ -26,10 +25,6 @@ class Solution:
             #check answer
             if self.res<cnt:
                 self.res=cnt
-            
-        
-        
-        #print(self.dup)
         
         return self.res+self.dup
         
